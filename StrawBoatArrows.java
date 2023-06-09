@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package borrowingarrows;
 
-/**
- *
- * @author User
- */
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
