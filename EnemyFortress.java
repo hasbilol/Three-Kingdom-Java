@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package enemyfortress;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -17,6 +14,8 @@ public class EnemyFortress {
 
     public static void main(String[] args) {
         // create graph
+       
+        
         path graph = new path(10);
         graph.addEdge(1, 2, 10);
         graph.addEdge(1, 3, 18);
@@ -42,15 +41,22 @@ public class EnemyFortress {
         System.out.print("Enter the enemy base camp: ");
         int destination = sc.nextInt();
 
+        
+        
         ArrayList<String> General = new ArrayList<>();
         General.add("Cavalry");
         General.add("Archer");
         General.add("Infantry");
         for (String general : General) {
-            // Find shortest path from source to destination
+            
+
+
+            //   to Find shortest path from source to destination
             List<List<Integer>> allPaths = graph.findPaths(source, destination);
 
-            // Find shortest distance
+           
+            
+            //   to Find shortest distance
             int distance = Integer.MAX_VALUE;
             List<Integer> shortestPath = null;
             for (List<Integer> path : allPaths) {
@@ -61,6 +67,8 @@ public class EnemyFortress {
                 }
             }
 
+            
+            
             double time = Integer.MAX_VALUE;
             List<Integer> shortestTime = null;
             for (List<Integer> path : allPaths) {
@@ -85,6 +93,8 @@ public class EnemyFortress {
         }
     }
 
+   
+    
     private static int calculatePathDistance(path graph, List<Integer> path) {
         int distance = 0;
         for (int i = 0; i < path.size() - 1; i++) {
@@ -95,6 +105,8 @@ public class EnemyFortress {
         return distance;
     }
 
+    
+    
     private static double calculatePathTime(path graph, List<Integer> path, String general) {
         double time = 0;
         for (int i = 0; i < path.size() - 1; i++) {
@@ -106,6 +118,8 @@ public class EnemyFortress {
         return time;
     }
 
+   
+    
     private static void displayPath(List<Integer> path) {
         int size = path.size();
         for (int i = 0; i < size; i++) {
@@ -133,20 +147,25 @@ class path {
         }
     }
 
+    
     public void addDirectedEdge(int u, int v, int distance) {
         adjacList[u].add(v);
         weights[u][v] = distance;
     }
 
+    
     public void addEdge(int u, int v, int distance) {
         addDirectedEdge(u, v, distance);
         addDirectedEdge(v, u, distance);
     }
 
+   
     public int getDistance(int u, int v) {
         return weights[u][v];
     }
 
+    
+    
     public double speed(int u, int v, String g) {
         if (g.equalsIgnoreCase("Cavalry")) {
             return 2 * geo(u, v, g);
@@ -157,6 +176,8 @@ class path {
         }
     }
 
+    
+    
     public double geo(int u, int v, String g) {
         List<Integer>[] flatRoad, forest, swamp, plankRoad;
         flatRoad = new ArrayList[11];
@@ -182,6 +203,7 @@ class path {
         flatRoad[9].add(10);
         flatRoad[10].add(9);
 
+       
         for (int i = 1; i <= 10; i++) {
             forest[i] = new ArrayList<>();
         }
@@ -194,6 +216,7 @@ class path {
         forest[8].add(10);
         forest[10].add(8);
 
+        
         for (int i = 1; i <= 10; i++) {
             swamp[i] = new ArrayList<>();
         }
@@ -206,6 +229,7 @@ class path {
         swamp[8].add(9);
         swamp[9].add(8);
 
+        
         for (int i = 1; i <= 10; i++) {
             plankRoad[i] = new ArrayList<>();
         }
@@ -213,6 +237,7 @@ class path {
         plankRoad[6].add(8);
         plankRoad[8].add(6);
 
+        
         if (flatRoad[u].contains(v)) {
             if (g.equalsIgnoreCase("Cavalry")) {
                 return 3;
@@ -243,6 +268,8 @@ class path {
 
     }
 
+    
+    
     public List<List<Integer>> findPaths(int source, int destination) {
         List<List<Integer>> allPaths = new ArrayList<>();
 
